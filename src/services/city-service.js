@@ -10,14 +10,16 @@ async function createCity(data) {
     const city = await cityRepository.create(data);
     return city;
   } catch (error) {
-    if (error.name == "SequelizeValidationError") {
+    if (
+      error.name == "SequelizeValidationError" ||
+      error.name == "SequelizeUniqueConstraintError"
+    ) {
       let explainantion = [];
       error.errors.forEach((err) => {
         explainantion.push(err.message);
       });
       throw new AppError(explainantion, StatusCodes.BAD_REQUEST);
     }
-
     throw new AppError(
       "Cannot create a new City",
       StatusCodes.INTERNAL_SERVER_ERROR
