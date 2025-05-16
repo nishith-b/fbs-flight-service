@@ -37,9 +37,15 @@ async function getAirplanes() {
 
 async function getAirplane(id) {
   try {
-    const airplanes = await airplaneRepository.get(id);
-    return airplanes;
+    const airplane = await airplaneRepository.get(id);
+    return airplane;
   } catch (error) {
+    if (error.statusCode == StatusCodes.NOT_FOUND) {
+      throw new AppError(
+        "The Airplane You Requested is not present",
+        error.statusCode
+      );
+    }
     throw new AppError(
       "Cannot fetch data of particular airplane",
       StatusCodes.INTERNAL_SERVER_ERROR
