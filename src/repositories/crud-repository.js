@@ -12,20 +12,12 @@ class CrudRepository {
   }
 
   async destroy(data) {
-    const response = await this.model.destroy({
-      where: {
-        id: data,
-      },
-    });
+    const response = await this.model.destroy(data);
     return response;
   }
 
   async get(data) {
-    const response = await this.model.findByPk({
-      where: {
-        id: data,
-      },
-    });
+    const response = await this.model.findByPk(data);
     return response;
   }
 
