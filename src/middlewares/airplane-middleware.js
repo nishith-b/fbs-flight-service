@@ -26,7 +26,7 @@ function validateCreateRequest(req, res, next) {
 
 function validateUpdateRequest(req, res, next) {
   if (!req.body) {
-    ErrorResponse.message = "Something went wrong while creating airplane";
+    ErrorResponse.message = "Something went wrong while updating airplane";
     ErrorResponse.error = new AppError(
       ["Required data not Found in incoming request"],
       StatusCodes.BAD_REQUEST
@@ -35,7 +35,7 @@ function validateUpdateRequest(req, res, next) {
   }
 
   if (!req.body.modelNumber && !req.body.capacity) {
-    ErrorResponse.message = "Something went wrong while creating airplane";
+    ErrorResponse.message = "Something went wrong while updating airplane";
     ErrorResponse.error = new AppError(
       ["Required data not Found in incoming request"],
       StatusCodes.BAD_REQUEST
