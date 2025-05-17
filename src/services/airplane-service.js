@@ -65,7 +65,7 @@ async function destroyAirplane(id) {
       );
     }
     throw new AppError(
-      "Cannot fetch data of all airplanes",
+      "Cannot delete specified airplane",
       StatusCodes.INTERNAL_SERVER_ERROR
     );
   }
