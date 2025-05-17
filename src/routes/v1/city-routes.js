@@ -1,11 +1,15 @@
 const express = require("express");
-const { CityController,AirplaneController } = require("../../controllers");
-const { AirplaneMiddlewares } = require("../../middlewares");
+const { CityController, AirplaneController } = require("../../controllers");
+const { CityMiddlewares } = require("../../middlewares");
 
 const router = express.Router();
 
 //  /api/v1/cities POST
-router.post("/", CityController.createCity);
+router.post(
+  "/",
+  CityMiddlewares.validateCreateRequest,
+  CityController.createCity
+);
 
 //  /api/v1/airplanes GET
 router.get("/", AirplaneController.getAirplanes);
