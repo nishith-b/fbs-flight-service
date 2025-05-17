@@ -22,7 +22,6 @@ async function createCity(req, res) {
 
 async function destroyCity(req, res) {
   try {
-    console.log(req.params)
     const city = await CityService.destroyCity(req.params.id);
     SuccessResponse.data = city;
     return res.status(StatusCodes.OK).json(SuccessResponse);

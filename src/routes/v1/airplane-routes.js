@@ -11,6 +11,13 @@ router.post(
   AirplaneController.createAirplane
 );
 
+// /api/v1/airplanes/:id PATCH
+router.patch(
+  "/:id",
+  AirplaneMiddlewares.validateUpdateRequest,
+  AirplaneController.updateAirplane
+);
+
 //  /api/v1/airplanes GET
 router.get("/", AirplaneController.getAirplanes);
 
