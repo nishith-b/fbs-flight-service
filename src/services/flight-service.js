@@ -2,7 +2,6 @@ const { StatusCodes } = require("http-status-codes");
 const { FlightRepository } = require("../repositories");
 const { Op } = require("sequelize");
 const AppError = require("../utils/errors/app-error");
-const { param } = require("../routes");
 
 const flightRepository = new FlightRepository();
 
