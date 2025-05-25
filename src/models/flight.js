@@ -8,17 +8,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
       this.belongsTo(models.Airplane, {
         foreignKey: "airplaneId",
+        as: "Airplane_Details",
       });
 
       this.belongsTo(models.Airport, {
         foreignKey: "departureAirportId",
+        targetKey: "code",
+        as: "Departure_Airport",
       });
 
       this.belongsTo(models.Airport, {
         foreignKey: "arrivalAirportId",
+        targetKey: "code",
+        as: "Arrival_Airport",
       });
     }
   }
@@ -55,7 +59,8 @@ module.exports = (sequelize, DataTypes) => {
       boardingGate: {
         type: DataTypes.STRING,
       },
-      totalSeats: { //Total Remaining Seats
+      totalSeats: {
+        //Total Remaining Seats
         type: DataTypes.INTEGER,
         allowNull: false,
       },
