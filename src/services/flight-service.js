@@ -76,7 +76,25 @@ async function getAllFlights(query) {
   }
 }
 
+async function getFlight(id) {
+  try {
+    const airports = await flightRepository.get(id);
+    return airports;
+  } catch (error) {
+    if (error.statusCode == StatusCodes.NOT_FOUND) {
+      throw new AppError(
+        "The Flight you requested is not present",
+        error.statusCode
+      );
+    }
+    throw new AppError(
+      "Cannot fetch data of flight",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+}
 module.exports = {
+  getFlight,
   createFlight,
   getAllFlights,
 };
