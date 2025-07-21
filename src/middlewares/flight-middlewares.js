@@ -97,4 +97,34 @@ function validateCreateRequest(req, res, next) {
   next();
 }
 
-module.exports = { validateCreateRequest };
+function validateUpdateSeatsRequest(req, res, next) {
+  if (!req.body) {
+    ErrorResponse.message = "Something went wrong while updating Flight";
+    ErrorResponse.error = new AppError(
+      ["Request Body is Empty"],
+      StatusCodes.BAD_REQUEST
+    );
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+  }
+  /*if (!req.body.flightId) {
+    ErrorResponse.message = "Something went wrong while updating Flight";
+    ErrorResponse.error = new AppError(
+      ["flightId missing in request body"],
+      StatusCodes.BAD_REQUEST
+    );
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+  }*/
+
+  if (!req.body.seats) {
+    ErrorResponse.message = "Something went wrong while updating Flight";
+    ErrorResponse.error = new AppError(
+      ["Number of seats are not found in request body in correct form"],
+      StatusCodes.BAD_REQUEST
+    );
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+  }
+
+  next();
+}
+
+module.exports = { validateCreateRequest, validateUpdateSeatsRequest };
