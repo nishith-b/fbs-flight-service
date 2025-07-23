@@ -48,6 +48,7 @@ class FlightRepository extends CrudRepository {
 
   async updateRemainingSeats(flightId, seats, dec = true) {
     // Add row lock for this operation(useful when multiple requests come for single object)
+    console.log("Inside")
     const transaction = await db.sequelize.transaction();
     try {
       await db.sequelize.query(addRowLockOnFlights(flightId));
